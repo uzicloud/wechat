@@ -63,7 +63,7 @@ func (w WXBizMsgCrypt) GetSignature(timestamp, nonce, msgEncrypt string) string 
 // Decrypt 方法用于对密文进行解密
 //
 // 返回解密后的消息，CropId/AppId, 或者错误信息
-func (w WXBizMsgCrypt) Decrypt(text string) ([]byte, string, error) {
+func (w WXBizMsgCrypt) Decrypt(text string) (string, error) {
 	var msgDecrypt []byte
 	var id string
 
@@ -90,7 +90,13 @@ func (w WXBizMsgCrypt) Decrypt(text string) ([]byte, string, error) {
 	msgDecrypt = decoded[20 : 20+msgLen]
 	id = string(decoded[20+msgLen:])
 
-	return msgDecrypt, id, nil
+	//return msgDecrypt, id, nil
+	if id == w.appID{
+		return string(msgDecrypt), nil
+	}
+	else{
+		return nil, errors.New("APPID Error")
+	}
 }
 
 // Encrypt 方法用于对明文进行加密
