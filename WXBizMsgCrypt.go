@@ -1,4 +1,4 @@
-package wechat
+package utils
 
 import (
 	"bytes"
@@ -27,7 +27,7 @@ type WXBizMsgCrypt struct {
 // token 为开发者在微信开放平台上设置的 Token，
 // encodingAESKey 为开发者在微信开放平台上设置的 EncodingAESKey，
 // appID 为企业号的 CorpId 或者 AppId
-func (w WXBizMsgCrypt) NewWXBizMsgCrypt(token, encodingAESKey, appID string) (WXBizMsgCrypt, error) {
+func NewWXBizMsgCrypt(token, encodingAESKey, appID string) (WXBizMsgCrypt, error) {
 	var key []byte
 	var err error
 
