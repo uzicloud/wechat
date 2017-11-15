@@ -93,8 +93,7 @@ func (w WXBizMsgCrypt) Decrypt(text string) (string, error) {
 	//return msgDecrypt, id, nil
 	if id == w.appID{
 		return string(msgDecrypt), nil
-	}
-	else{
+	}else{
 		return nil, errors.New("APPID Error")
 	}
 }
