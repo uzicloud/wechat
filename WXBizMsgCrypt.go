@@ -69,12 +69,12 @@ func (w WXBizMsgCrypt) Decrypt(text string) (string, error) {
 
 	deciphered, err := base64.StdEncoding.DecodeString(text)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	c, err := aes.NewCipher(w.key)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	cbc := cipher.NewCBCDecrypter(c, w.iv)
@@ -94,7 +94,7 @@ func (w WXBizMsgCrypt) Decrypt(text string) (string, error) {
 	if id == w.appID{
 		return string(msgDecrypt), nil
 	}else{
-		return nil, errors.New("APPID Error")
+		return "", errors.New("APPID Error")
 	}
 }
 
