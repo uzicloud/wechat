@@ -69,12 +69,12 @@ func (w WXBizMsgCrypt) Decrypt(text string) (string, error) {
 
 	deciphered, err := base64.StdEncoding.DecodeString(text)
 	if err != nil {
-		return nil, "", err
+		return nil, err
 	}
 
 	c, err := aes.NewCipher(w.key)
 	if err != nil {
-		return nil, "", err
+		return nil, err
 	}
 
 	cbc := cipher.NewCBCDecrypter(c, w.iv)
